@@ -1,0 +1,23 @@
+import pygame
+pygame.init()
+
+screen = pygame.display.set_mode((800, 500)) #flags=pygame.NOFRAME
+pygame.display.set_caption('I love biochemistry')
+icon = pygame.image.load('images/icon.png')
+pygame.display.set_icon(icon)
+
+
+
+screen.fill((63, 153, 117))
+
+
+
+running = True
+while running:
+    pygame.display.update()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    
+
+pygame.quit()
