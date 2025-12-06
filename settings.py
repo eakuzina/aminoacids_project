@@ -5,6 +5,7 @@ import pygame
 WIDTH = 1000
 HEIGHT = 700
 TITLE = "Угадай Аминокислоту"
+FPS = 30
 
 # Цвета (RGB)
 WHITE = (255, 255, 255)
