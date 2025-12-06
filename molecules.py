@@ -12,7 +12,7 @@ ELEMENT_COLORS = {
     "S": (220, 180, 0),      # Сера
 }
 
-AMINO_ACIDS = {
+'''AMINO_ACIDS = {
     "аланин": "draw_alanine",
     "глицин": "draw_glycine",
     "валин": "draw_valine",
@@ -33,7 +33,11 @@ AMINO_ACIDS = {
     "аргинин": "draw_arginine",
     "гистидин": "draw_histidine",
     "тирозин": "draw_tyrosine",
-}
+}'''
+
+AMINO_ACIDS = {
+    "глицин": "draw_glycine" }
+
 
 def draw_atom(surface, x, y, element, r=10):
     '''рисует атом в виде круга с подписью'''
@@ -130,3 +134,9 @@ def draw_amino_acid(surface, name, x, y):
     if func_name:
         globals()[func_name](surface, x, y)
 
+def draw_glycine(surface, x, y):
+    pos = draw_backbone(surface, x, y)
+    ca_x, ca_y = pos["CA"]
+    h_x, h_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, h_x, h_y)
+    draw_atom(surface, h_x, h_y, "H", 7)
