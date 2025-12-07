@@ -108,7 +108,8 @@ def main():
             screen.blit(msg_text, (WIDTH // 2 - msg_text.get_width() // 2, 455))
 
         pygame.display.flip()
-
+        if score==len(keys):
+            break
     pygame.quit()
     #running=false
     print(f"Игра закончена. Финальный счёт: {score}/{len(keys)}")

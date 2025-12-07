@@ -40,7 +40,10 @@ AMINO_ACIDS = {
     "глицин": "draw_glycine",
     "фенилаланин": "draw_phenylalanine",
     "тирозин": "draw_tyrosine",
-    "триптофан": "draw_tryptophan"}
+    "триптофан": "draw_tryptophan",
+    "валин": "draw_valine",
+    "лейцин": "draw_leucine",
+    "изолейцин": "draw_isoleucine"}
 
 
 def draw_atom(surface, x, y, element, r=10):
@@ -164,7 +167,7 @@ def draw_phenylalanine(surface, x, y):
     draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
     
     # бензольное кольцо
-    # центр бензольного кольца смещается так, чтобы верхняя вершина (0) была под бета-C
+
     r = 35
     cx, cy = cb_x, cb_y + r + 15 # сдвигает центр вниз на радиус + длина связи
     
@@ -243,7 +246,7 @@ def draw_tryptophan(surface, x, y):
     # координаты 5-членного пиррольного цикла
     # c1 (верхний), c2 (левый), n1 (азот пиррольного кольца), c3 (правый перед N), c4 (правый)
     
-    p_c1   = (c1_x, c1_y)                 # C1
+    p_c1   = (c1_x, c1_y) # C1
     p_c4 = (c1_x + pyrrole_w, c1_y + 15) # C4 (общий с бензолом)
     p_c3 = (c1_x + pyrrole_w, c1_y + 45) # C3 (общий с бензолом)
     p_n1 = (c1_x - pyrrole_w + 5, c1_y + 45) # N1
@@ -286,4 +289,57 @@ def draw_tryptophan(surface, x, y):
     draw_bond(surface, b_bot_r[0], b_bot_r[1], b_bot[0], b_bot[1], True)
     # b_bot - p_c3 
     draw_bond(surface, b_bot[0], b_bot[1], p_c3[0], p_c3[1])
-    # p_c3 - p_c4 (уже нарисована)
+
+def draw_valine(surface, x, y):
+    pos = draw_backbone(surface, x, y)
+
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+    c1_x, c1_y = cb_x - 30, cb_y + 35
+    c2_x, c2_y = cb_x + 30, cb_y + 35
+    draw_bond(surface, cb_x, cb_y, c1_x, c1_y)
+    draw_bond(surface, cb_x, cb_y, c2_x, c2_y)
+    draw_atom(surface, c1_x, c1_y, "C")
+    draw_atom(surface, c2_x, c2_y, "C")
+
+def draw_leucine(surface, x, y):
+    pos = draw_backbone(surface, x, y)
+
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+
+    cg_x, cg_y = cb_x, cb_y + 40
+    draw_bond(surface, cb_x, cb_y, cg_x, cg_y)
+    draw_atom(surface, cg_x, cg_y, "C")
+
+    c1_x, c1_y = cg_x - 30, cg_y + 35
+    c2_x, c2_y = cg_x + 30, cg_y + 35
+    draw_bond(surface, cg_x, cg_y, c1_x, c1_y)
+    draw_bond(surface, cg_x, cg_y, c2_x, c2_y)
+    draw_atom(surface, c1_x, c1_y, "C")
+    draw_atom(surface, c2_x, c2_y, "C")
+
+def draw_isoleucine(surface, x, y):
+    pos = draw_backbone(surface, x, y)
+
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+    cg2_x, cg2_y = cb_x - 30, cb_y + 35
+    draw_bond(surface, cb_x, cb_y, cg2_x, cg2_y)
+    draw_atom(surface, cg2_x, cg2_y, "C")
+    
+    cg1_x, cg1_y = cb_x + 30, cb_y + 35
+    draw_bond(surface, cb_x, cb_y, cg1_x, cg1_y)
+    draw_atom(surface, cg1_x, cg1_y, "C")
+    
+    cd1_x, cd1_y = cg1_x + 25, cg1_y + 35
+    draw_bond(surface, cg1_x, cg1_y, cd1_x, cd1_y)
+    draw_atom(surface, cd1_x, cd1_y, "C")
