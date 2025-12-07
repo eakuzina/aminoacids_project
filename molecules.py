@@ -43,7 +43,10 @@ AMINO_ACIDS = {
     "триптофан": "draw_tryptophan",
     "валин": "draw_valine",
     "лейцин": "draw_leucine",
-    "изолейцин": "draw_isoleucine"}
+    "изолейцин": "draw_isoleucine",
+    "пролин": "draw_proline",
+    "серин": "draw_serine",
+    "треонин": "draw_threonine"}
 
 
 def draw_atom(surface, x, y, element, r=10):
@@ -343,3 +346,44 @@ def draw_isoleucine(surface, x, y):
     cd1_x, cd1_y = cg1_x + 25, cg1_y + 35
     draw_bond(surface, cg1_x, cg1_y, cd1_x, cd1_y)
     draw_atom(surface, cd1_x, cd1_y, "C")
+
+def draw_proline(surface, x, y):
+    '''рисует пролин'''
+    pos = draw_backbone(surface, x, y)
+    ca_x, ca_y = pos["CA"]
+    n_x, n_y = pos["N"]
+    
+    cb_x, cb_y = ca_x, ca_y + 40
+    cd_x, cd_y = n_x, n_y + 40
+    cg_x, cg_y = (cb_x + cd_x) // 2, cb_y + 25
+    
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_bond(surface, cb_x, cb_y, cg_x, cg_y)
+    draw_bond(surface, cg_x, cg_y, cd_x, cd_y)
+    draw_bond(surface, cd_x, cd_y, n_x, n_y)
+
+def draw_serine(surface, x, y):
+    '''рисует серин'''
+    pos = draw_backbone(surface, x, y)
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    o_x, o_y = cb_x, cb_y + 40
+    draw_bond(surface, cb_x, cb_y, o_x, o_y)
+    draw_atom(surface, o_x, o_y, "O")
+
+def draw_threonine(surface, x, y):
+    '''рисует треонин'''
+    pos = draw_backbone(surface, x, y)
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x + 20, ca_y + 35
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    o_x, o_y = cb_x, cb_y + 40
+    draw_bond(surface, cb_x, cb_y, o_x, o_y)
+    draw_atom(surface, o_x, o_y, "O")
+    c_x, c_y = ca_x - 20, ca_y + 45
+    draw_bond(surface, ca_x, ca_y, c_x, c_y)
+    draw_atom(surface, c_x, c_y, "C")
+
