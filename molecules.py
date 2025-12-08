@@ -12,7 +12,7 @@ ELEMENT_COLORS = {
     "S": (220, 180, 0),      # Сера
 }
 
-'''AMINO_ACIDS = {
+AMINO_ACIDS = {
     "аланин": "draw_alanine",
     "глицин": "draw_glycine",
     "валин": "draw_valine",
@@ -33,28 +33,7 @@ ELEMENT_COLORS = {
     "аргинин": "draw_arginine",
     "гистидин": "draw_histidine",
     "тирозин": "draw_tyrosine",
-}'''
-
-AMINO_ACIDS = {
-    "аланин": "draw_alanine",
-    "глицин": "draw_glycine",
-    "фенилаланин": "draw_phenylalanine",
-    "тирозин": "draw_tyrosine",
-    "триптофан": "draw_tryptophan",
-    "валин": "draw_valine",
-    "лейцин": "draw_leucine",
-    "изолейцин": "draw_isoleucine",
-    "пролин": "draw_proline",
-    "серин": "draw_serine",
-    "треонин": "draw_threonine",
-    "цистеин": "draw_cysteine",
-    "метионин": "draw_methionine",
-    "аспарагин": "draw_asparagine",
-    "глутамин": "draw_glutamine",
-    "аспартат": "draw_aspartate",
-    "глутамат": "draw_glutamate",
-    "лизин": "draw_lysine",
-    "аргинин": "draw_arginine"}
+}
 
 
 def draw_atom(surface, x, y, element, r=10):
@@ -301,6 +280,40 @@ def draw_tryptophan(surface, x, y):
     # b_bot - p_c3 
     draw_bond(surface, b_bot[0], b_bot[1], p_c3[0], p_c3[1])
 
+def draw_histidine(surface, x, y):
+    pos = draw_backbone(surface, x, y)
+    ca_x, ca_y = pos["CA"]
+    
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+
+    cx, cy = cb_x, cb_y + 45
+    r = 30
+    pts = get_poly_points(cx, cy, r, 5, start_deg=-90)
+
+    draw_bond(surface, cb_x, cb_y, pts[0][0], pts[0][1])
+    
+    # Контур кольца
+    draw_bond(surface, pts[0][0], pts[0][1], pts[1][0], pts[1][1])
+
+    draw_bond(surface, pts[1][0], pts[1][1], pts[2][0], pts[2][1], True)
+
+    draw_bond(surface, pts[2][0], pts[2][1], pts[3][0], pts[3][1])
+
+    draw_bond(surface, pts[3][0], pts[3][1], pts[4][0], pts[4][1])
+
+    draw_bond(surface, pts[4][0], pts[4][1], pts[0][0], pts[0][1], True)
+    
+
+    draw_atom(surface, pts[1][0], pts[1][1], "N") 
+    draw_atom(surface, pts[3][0], pts[3][1], "N") 
+    
+    h_x, h_y = pts[3][0] - 20, pts[3][1] + 10
+    draw_bond(surface, pts[3][0], pts[3][1], h_x, h_y)
+    draw_atom(surface, h_x, h_y, "H", 7)
+
 def draw_valine(surface, x, y):
     pos = draw_backbone(surface, x, y)
 
@@ -455,8 +468,7 @@ def draw_glutamine(surface, x, y):
     
     ca_x, ca_y = pos["CA"]
 
-Екатерина, [08.12.2025 21:20]
-cb_x, cb_y = ca_x, ca_y + 40
+    cb_x, cb_y = ca_x, ca_y + 40
     draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
     draw_atom(surface, cb_x, cb_y, "C")
     
