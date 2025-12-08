@@ -46,7 +46,15 @@ AMINO_ACIDS = {
     "изолейцин": "draw_isoleucine",
     "пролин": "draw_proline",
     "серин": "draw_serine",
-    "треонин": "draw_threonine",}
+    "треонин": "draw_threonine",
+    "цистеин": "draw_cysteine",
+    "метионин": "draw_methionine",
+    "аспарагин": "draw_asparagine",
+    "глутамин": "draw_glutamine",
+    "аспартат": "draw_aspartate",
+    "глутамат": "draw_glutamate",
+    "лизин": "draw_lysine",
+    "аргинин": "draw_arginine"}
 
 
 def draw_atom(surface, x, y, element, r=10):
@@ -386,4 +394,244 @@ def draw_threonine(surface, x, y):
     c_x, c_y = ca_x - 20, ca_y + 45
     draw_bond(surface, ca_x, ca_y, c_x, c_y)
     draw_atom(surface, c_x, c_y, "C")
+
+Екатерина, [08.12.2025 21:20]
+draw_bond(surface, b_top[0], b_top[1], b_top_r[0], b_top_r[1], True)
+    # b_top_r - b_bot_r
+    draw_bond(surface, b_top_r[0], b_top_r[1], b_bot_r[0], b_bot_r[1])
+    # b_bot_r - b_bot (=)
+    draw_bond(surface, b_bot_r[0], b_bot_r[1], b_bot[0], b_bot[1], True)
+    # b_bot - p_c3 
+    draw_bond(surface, b_bot[0], b_bot[1], p_c3[0], p_c3[1])
+
+def draw_valine(surface, x, y):
+    pos = draw_backbone(surface, x, y)
+
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+    c1_x, c1_y = cb_x - 30, cb_y + 35
+    c2_x, c2_y = cb_x + 30, cb_y + 35
+    draw_bond(surface, cb_x, cb_y, c1_x, c1_y)
+    draw_bond(surface, cb_x, cb_y, c2_x, c2_y)
+    draw_atom(surface, c1_x, c1_y, "C")
+    draw_atom(surface, c2_x, c2_y, "C")
+
+def draw_leucine(surface, x, y):
+    pos = draw_backbone(surface, x, y)
+
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+
+    cg_x, cg_y = cb_x, cb_y + 40
+    draw_bond(surface, cb_x, cb_y, cg_x, cg_y)
+    draw_atom(surface, cg_x, cg_y, "C")
+
+    c1_x, c1_y = cg_x - 30, cg_y + 35
+    c2_x, c2_y = cg_x + 30, cg_y + 35
+    draw_bond(surface, cg_x, cg_y, c1_x, c1_y)
+    draw_bond(surface, cg_x, cg_y, c2_x, c2_y)
+    draw_atom(surface, c1_x, c1_y, "C")
+    draw_atom(surface, c2_x, c2_y, "C")
+
+def draw_isoleucine(surface, x, y):
+    pos = draw_backbone(surface, x, y)
+
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+    cg2_x, cg2_y = cb_x - 30, cb_y + 35
+    draw_bond(surface, cb_x, cb_y, cg2_x, cg2_y)
+    draw_atom(surface, cg2_x, cg2_y, "C")
+    
+    cg1_x, cg1_y = cb_x + 30, cb_y + 35
+    draw_bond(surface, cb_x, cb_y, cg1_x, cg1_y)
+    draw_atom(surface, cg1_x, cg1_y, "C")
+    
+    cd1_x, cd1_y = cg1_x + 25, cg1_y + 35
+    draw_bond(surface, cg1_x, cg1_y, cd1_x, cd1_y)
+    draw_atom(surface, cd1_x, cd1_y, "C")
+
+def draw_cysteine(surface, x, y):
+    '''рисует цистеин'''
+    pos = draw_backbone(surface, x, y)
+    
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+    s_x, s_y = cb_x, cb_y + 40
+    draw_bond(surface, cb_x, cb_y, s_x, s_y)
+    draw_atom(surface, s_x, s_y, "S")
+
+def draw_methionine(surface, x, y):
+    '''рисует метионин'''
+    pos = draw_backbone(surface, x, y)
+    
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+    cg_x, cg_y = cb_x + 35, cb_y + 35
+    draw_bond(surface, cb_x, cb_y, cg_x, cg_y)
+    draw_atom(surface, cg_x, cg_y, "C")
+    
+    s_x, s_y = cg_x + 35, cg_y
+    draw_bond(surface, cg_x, cg_y, s_x, s_y)
+    draw_atom(surface, s_x, s_y, "S")
+    
+    ce_x, ce_y = s_x + 35, s_y
+    draw_bond(surface, s_x, s_y, ce_x, ce_y)
+    draw_atom(surface, ce_x, ce_y, "C")
+
+def draw_asparagine(surface, x, y):
+    '''рисует аспарагин'''
+    pos = draw_backbone(surface, x, y)
+    
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+    cg_x, cg_y = cb_x, cb_y + 40
+    draw_bond(surface, cb_x, cb_y, cg_x, cg_y)
+    draw_atom(surface, cg_x, cg_y, "C")
+    
+    o_x, o_y = cg_x - 30, cg_y + 30
+    n_x, n_y = cg_x + 30, cg_y + 30
+    draw_bond(surface, cg_x, cg_y, o_x, o_y, double=True)
+    draw_bond(surface, cg_x, cg_y, n_x, n_y)
+    draw_atom(surface, o_x, o_y, "O")
+    draw_atom(surface, n_x, n_y, "N")
+
+def draw_glutamine(surface, x, y):
+    '''рисует глутамин'''
+    pos = draw_backbone(surface, x, y)
+    
+    ca_x, ca_y = pos["CA"]
+
+Екатерина, [08.12.2025 21:20]
+cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+    cg_x, cg_y = cb_x, cb_y + 40
+    draw_bond(surface, cb_x, cb_y, cg_x, cg_y)
+    draw_atom(surface, cg_x, cg_y, "C")
+    
+    cd_x, cd_y = cg_x, cg_y + 40
+    draw_bond(surface, cg_x, cg_y, cd_x, cd_y)
+    draw_atom(surface, cd_x, cd_y, "C")
+    
+    o_x, o_y = cd_x - 30, cd_y + 30
+    n_x, n_y = cd_x + 30, cd_y + 30
+    draw_bond(surface, cd_x, cd_y, o_x, o_y, double=True)
+    draw_bond(surface, cd_x, cd_y, n_x, n_y)
+    draw_atom(surface, o_x, o_y, "O")
+    draw_atom(surface, n_x, n_y, "N")
+
+def draw_aspartate(surface, x, y):
+    '''рисует аспартат'''
+    pos = draw_backbone(surface, x, y)
+    
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+    cg_x, cg_y = cb_x, cb_y + 40
+    draw_bond(surface, cb_x, cb_y, cg_x, cg_y)
+    draw_atom(surface, cg_x, cg_y, "C")
+    
+    o1_x, o1_y = cg_x - 30, cg_y + 30
+    o2_x, o2_y = cg_x + 30, cg_y + 30
+    draw_bond(surface, cg_x, cg_y, o1_x, o1_y, double=True)
+    draw_bond(surface, cg_x, cg_y, o2_x, o2_y)
+    draw_atom(surface, o1_x, o1_y, "O")
+    draw_atom(surface, o2_x, o2_y, "O")
+
+def draw_glutamate(surface, x, y):
+    '''рисует глутамат'''
+    pos = draw_backbone(surface, x, y)
+    
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 40
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+    cg_x, cg_y = cb_x, cb_y + 40
+    draw_bond(surface, cb_x, cb_y, cg_x, cg_y)
+    draw_atom(surface, cg_x, cg_y, "C")
+    
+    cd_x, cd_y = cg_x, cg_y + 40
+    draw_bond(surface, cg_x, cg_y, cd_x, cd_y)
+    draw_atom(surface, cd_x, cd_y, "C")
+    
+    o1_x, o1_y = cd_x - 30, cd_y + 30
+    o2_x, o2_y = cd_x + 30, cd_y + 30
+    draw_bond(surface, cd_x, cd_y, o1_x, o1_y, double=True)
+    draw_bond(surface, cd_x, cd_y, o2_x, o2_y)
+    draw_atom(surface, o1_x, o1_y, "O")
+    draw_atom(surface, o2_x, o2_y, "O")
+
+def draw_lysine(surface, x, y):
+    '''рисует лизин'''
+    pos = draw_backbone(surface, x, y)
+    
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 35
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+    cg_x, cg_y = cb_x, cb_y + 35
+    draw_bond(surface, cb_x, cb_y, cg_x, cg_y)
+    draw_atom(surface, cg_x, cg_y, "C")
+    
+    cd_x, cd_y = cg_x, cg_y + 35
+    draw_bond(surface, cg_x, cg_y, cd_x, cd_y)
+    draw_atom(surface, cd_x, cd_y, "C")
+    
+    ce_x, ce_y = cd_x, cd_y + 35
+    draw_bond(surface, cd_x, cd_y, ce_x, ce_y)
+    draw_atom(surface, ce_x, ce_y, "C")
+    
+    n_x, n_y = ce_x, ce_y + 35
+    draw_bond(surface, ce_x, ce_y, n_x, n_y)
+    draw_atom(surface, n_x, n_y, "N")
+
+def draw_arginine(surface, x, y):
+    '''рисует аргинин'''
+    pos = draw_backbone(surface, x, y)
+    
+    ca_x, ca_y = pos["CA"]
+    cb_x, cb_y = ca_x, ca_y + 35
+    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
+    draw_atom(surface, cb_x, cb_y, "C")
+    
+    cg_x, cg_y = cb_x, cb_y + 35
+    draw_bond(surface, cb_x, cb_y, cg_x, cg_y)
+    draw_atom(surface, cg_x, cg_y, "C")
+    
+    cd_x, cd_y = cg_x, cg_y + 35
+    draw_bond(surface, cg_x, cg_y, cd_x, cd_y)
+    draw_atom(surface, cd_x, cd_y, "C")
+    
+    c_x, c_y = cd_x, cd_y + 35
+    draw_bond(surface, cd_x, cd_y, c_x, c_y)
+    draw_atom(surface, c_x, c_y, "C")
+    
+    n1_x, n1_y = c_x - 25, c_y + 25
+    n2_x, n2_y = c_x + 25, c_y + 25
+    draw_bond(surface, c_x, c_y, n1_x, n1_y)
+    draw_bond(surface, c_x, c_y, n2_x, n2_y)
+    draw_atom(surface, n1_x, n1_y, "N")
+    draw_atom(surface, n2_x, n2_y, "N")
 
