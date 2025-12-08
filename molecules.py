@@ -281,6 +281,7 @@ def draw_tryptophan(surface, x, y):
     draw_bond(surface, b_bot[0], b_bot[1], p_c3[0], p_c3[1])
 
 def draw_histidine(surface, x, y):
+    '''рисует гистидин'''
     pos = draw_backbone(surface, x, y)
     ca_x, ca_y = pos["CA"]
     
@@ -315,6 +316,7 @@ def draw_histidine(surface, x, y):
     draw_atom(surface, h_x, h_y, "H", 7)
 
 def draw_valine(surface, x, y):
+    '''рисует валин'''
     pos = draw_backbone(surface, x, y)
 
     ca_x, ca_y = pos["CA"]
@@ -330,6 +332,7 @@ def draw_valine(surface, x, y):
     draw_atom(surface, c2_x, c2_y, "C")
 
 def draw_leucine(surface, x, y):
+    '''рисует лейцин'''
     pos = draw_backbone(surface, x, y)
 
     ca_x, ca_y = pos["CA"]
@@ -349,6 +352,7 @@ def draw_leucine(surface, x, y):
     draw_atom(surface, c2_x, c2_y, "C")
 
 def draw_isoleucine(surface, x, y):
+    '''рисует изолейцин'''
     pos = draw_backbone(surface, x, y)
 
     ca_x, ca_y = pos["CA"]
