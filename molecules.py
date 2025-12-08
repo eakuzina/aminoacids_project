@@ -395,69 +395,6 @@ def draw_threonine(surface, x, y):
     draw_bond(surface, ca_x, ca_y, c_x, c_y)
     draw_atom(surface, c_x, c_y, "C")
 
-Екатерина, [08.12.2025 21:20]
-draw_bond(surface, b_top[0], b_top[1], b_top_r[0], b_top_r[1], True)
-    # b_top_r - b_bot_r
-    draw_bond(surface, b_top_r[0], b_top_r[1], b_bot_r[0], b_bot_r[1])
-    # b_bot_r - b_bot (=)
-    draw_bond(surface, b_bot_r[0], b_bot_r[1], b_bot[0], b_bot[1], True)
-    # b_bot - p_c3 
-    draw_bond(surface, b_bot[0], b_bot[1], p_c3[0], p_c3[1])
-
-def draw_valine(surface, x, y):
-    pos = draw_backbone(surface, x, y)
-
-    ca_x, ca_y = pos["CA"]
-    cb_x, cb_y = ca_x, ca_y + 40
-    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
-    draw_atom(surface, cb_x, cb_y, "C")
-    
-    c1_x, c1_y = cb_x - 30, cb_y + 35
-    c2_x, c2_y = cb_x + 30, cb_y + 35
-    draw_bond(surface, cb_x, cb_y, c1_x, c1_y)
-    draw_bond(surface, cb_x, cb_y, c2_x, c2_y)
-    draw_atom(surface, c1_x, c1_y, "C")
-    draw_atom(surface, c2_x, c2_y, "C")
-
-def draw_leucine(surface, x, y):
-    pos = draw_backbone(surface, x, y)
-
-    ca_x, ca_y = pos["CA"]
-    cb_x, cb_y = ca_x, ca_y + 40
-    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
-    draw_atom(surface, cb_x, cb_y, "C")
-
-    cg_x, cg_y = cb_x, cb_y + 40
-    draw_bond(surface, cb_x, cb_y, cg_x, cg_y)
-    draw_atom(surface, cg_x, cg_y, "C")
-
-    c1_x, c1_y = cg_x - 30, cg_y + 35
-    c2_x, c2_y = cg_x + 30, cg_y + 35
-    draw_bond(surface, cg_x, cg_y, c1_x, c1_y)
-    draw_bond(surface, cg_x, cg_y, c2_x, c2_y)
-    draw_atom(surface, c1_x, c1_y, "C")
-    draw_atom(surface, c2_x, c2_y, "C")
-
-def draw_isoleucine(surface, x, y):
-    pos = draw_backbone(surface, x, y)
-
-    ca_x, ca_y = pos["CA"]
-    cb_x, cb_y = ca_x, ca_y + 40
-    draw_bond(surface, ca_x, ca_y, cb_x, cb_y)
-    draw_atom(surface, cb_x, cb_y, "C")
-    
-    cg2_x, cg2_y = cb_x - 30, cb_y + 35
-    draw_bond(surface, cb_x, cb_y, cg2_x, cg2_y)
-    draw_atom(surface, cg2_x, cg2_y, "C")
-    
-    cg1_x, cg1_y = cb_x + 30, cb_y + 35
-    draw_bond(surface, cb_x, cb_y, cg1_x, cg1_y)
-    draw_atom(surface, cg1_x, cg1_y, "C")
-    
-    cd1_x, cd1_y = cg1_x + 25, cg1_y + 35
-    draw_bond(surface, cg1_x, cg1_y, cd1_x, cd1_y)
-    draw_atom(surface, cd1_x, cd1_y, "C")
-
 def draw_cysteine(surface, x, y):
     '''рисует цистеин'''
     pos = draw_backbone(surface, x, y)
